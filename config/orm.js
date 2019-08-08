@@ -27,16 +27,16 @@ function printQuestionMarks(num) {
   }
 
 var orm = {
-    all: function (id, devoured) {
-        var queryString = "SELECT * FROM " + id + ";";
+    all: function (table, cb) {
+        var queryString = "SELECT * FROM " + table + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
-            devoured(result);
+            cb(result);
         });
     },
-    selectAll: function (id, burger_name, devoured) {
+    selectAll: function (id, burger_name, cb) {
         var burger = "INSERT INTO " + id;
 
         burger += "(";
@@ -56,12 +56,36 @@ var orm = {
         })
     },
 
-    insertOne: function () {
+    insertOne: function (table, cols, vals, cb) {
+        var qString = "INSERT INTO " + table;
+        qString += " (";
+        qString += cols.toString();
+        qString += ") ";
+        qString += "VALUES (";
+        qString += printQuestionMarks(vals.length);
+        qString += ") ";
+
+        console.log(qString);
+        connection.query(qString, vals, function (err result) {
+            if(err) throw err;
+        })
+        cb(result);
+
+
 
     },
 
-    updateOne: function () {
+    updateOne: function (table, objColVals condition, cb) {
+        var qString = "UPDATE " + table;
+        qString += " SET ";
+        qString += objToSql(objColVals);
+        qString += " WHERE ";
+        qString += condition;
 
+        connection.query(qString, function (err, result) {
+            if(err) throw err;
+        })
+        cb(result);
     }
 
 
