@@ -27,7 +27,7 @@ function printQuestionMarks(num) {
   }
 
 var orm = {
-    all: function (table, cb) {
+    selectAll: function (table, cb) {
         var queryString = "SELECT * FROM " + table + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
@@ -36,25 +36,25 @@ var orm = {
             cb(result);
         });
     },
-    selectAll: function (id, burger_name, cb) {
-        var burger = "INSERT INTO " + id;
+    // selectAll: function (id, burger_name, cb) {
+    //     var burger = "INSERT INTO " + id;
 
-        burger += "(";
-        burger += burger_name.toString();
-        burger += ") ";
-        burger += "VALUES (";
-        burger += ") ";
-        console.log(burger)
+    //     burger += "(";
+    //     burger += burger_name.toString();
+    //     burger += ") ";
+    //     burger += "VALUES (";
+    //     burger += ") ";
+    //     console.log(burger)
 
-        connection.query(burger, function (err, result) {
-            if (err) {
-                throw err;
-            }
+    //     connection.query(burger, function (err, result) {
+    //         if (err) {
+    //             throw err;
+    //         }
 
-            cb(result);
+    //         cb(result);
 
-        })
-    },
+    //     })
+    // },
 
     insertOne: function (table, cols, vals, cb) {
         var qString = "INSERT INTO " + table;
