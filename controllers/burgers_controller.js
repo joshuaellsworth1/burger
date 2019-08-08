@@ -16,17 +16,28 @@ router.get("/", function (req, res) {
 
 router.post("/api/burger", function (req, res) {
     burger.create([
-        "name"
+        "name", "hungry"
     ], [
-            req.body.name
+        req.body.name, req.body.hungry
         ], function (result) {
             res.json({ id: result.insertId });
         });
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-    var 
-})
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+
+    burger.update({
+        hungry: req.body.hungry
+    }), condition, function(result) {
+        if(result.changeRows == 0) {
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    };
+});
 
 
 

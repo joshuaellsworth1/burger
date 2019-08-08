@@ -1,22 +1,20 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    all: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+    all: function (id, devoured) {
+        var queryString = "SELECT * FROM " + id + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
-            cb(result);
+            devoured(result);
         });
     },
-
-
-    selectAll: function (id, name, cb) {
+    selectAll: function (id, burger_name, devoured) {
         var burger = "INSERT INTO " + id;
 
         burger += "(";
-        burger += name.toString();
+        burger += burger_name.toString();
         burger += ") ";
         burger += "VALUES (";
         burger += ") ";
