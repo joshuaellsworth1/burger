@@ -2,14 +2,16 @@
   <h1>Add a burger! Then devour it if you get hungry</h1>
   <br>
   <br>
-  <h2>Add Burger</h2>
+  {{!-- <h2>Add Burger</h2> --}}
   <form class="create-form">
 
 
     <div class="form-group">
       <label for="ca">Burger Name:</label>
-      <input type="text" id="ca" name="name">
+      <input type="text" id="burgername" name="burgername">
+          <button type="button" class="btn" id="create-form" data-id={{this.id}} data-newDevoured={{devour}}>Submit Burger</button>
     </div>
+
 
     {{!-- <div class="form-group"> --}}
     {{!-- <label for="devoured">Devoured</label><br>
@@ -17,33 +19,30 @@
     <input type="radio" name="devoured" value="0"> Devoured --}}
 </div>
 </form>
-<br>
-<br>
-
+<h1>Burgers that have been eaten:</h1>
 <ul>
-  <h2>Add Burger</h2>
+  {{#each burgers}}
+  {{#if devoured}}
+    <p>{{burger_name}} <span>#{{id}}</span></p>
+  {{!-- {{burger_name}} <span>#{{id}}</span> --}}
+  {{/if}}
+  {{/each}}
+</ul>
+
+<h1>Burgers you can eat:</h1>
+<ul>
+  <h2>Click to devour jawn</h2>
   {{#each burgers}}
   {{#unless devoured}}
-  <form class="burger-form" method="POST">
-    <button type="button" class="btn" id="submit-btn" data-id={{this.id}} data-newDevoured={{devour}}>Submit
-      Burger</button>
-  </form>
-  {{burger_name}} <span>#{{id}}</span>
-  {{/unless}}
-  {{/each}}
-  </ul>
-
-
-<ul>
-  <h2>Devour this Jawn</h2>
-  {{#each burgers}}
-  {{#unless devoured}}
-  <form class="devour-form" method="PUT">
-    <button type="button" class="btn" id="devour-burger" data-id={{this.id}} data-newDevoured={{devour}}>Button</button>
-  </form>
-  {{burger_name}} <span>#{{id}}</span>
-  {{/unless}}
-  {{/each}}
+  <div>
+    <form class="devour-form" method="PUT">
+      <button type="button" class="btn devour-burger" data-id={{this.id}} data-newDevoured={{devour}}>Devour Burger
+        Jawn</button>
+    </form>
+    {{burger_name}} <span>#{{id}}</span>
+    {{/unless}}
+    {{/each}}
+  </div>
 </ul>
 
 </div>

@@ -68,22 +68,24 @@ var orm = {
     console.log(qString);
     connection.query(qString, vals, function (err, result) {
       if (err) throw err;
+      cb(result);
     })
-    cb(result);
 
   },
 
   updateOne: function (table, objColVals, condition, cb) {
+    console.log("condition from orm", condition);
     var qString = "UPDATE " + table;
     qString += " SET ";
     qString += objToSql(objColVals);
     qString += " WHERE ";
     qString += condition;
+    console.log(qString);
 
     connection.query(qString, function (err, result) {
       if (err) throw err;
+      cb(result);
     })
-    cb(result);
   }
 
 
