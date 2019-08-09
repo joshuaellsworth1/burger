@@ -1,92 +1,90 @@
 var connection = require("../config/connection.js");
 
 function printQuestionMarks(num) {
-    var arr = [];
-  
-    for (var i = 0; i < num; i++) {
-      arr.push("?");
-    }
-  
-    return arr.toString();
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
   }
-  
-  function objToSql(ob) {
-    var arr = [];
-  
-    for (var key in ob) {
-      var value = ob[key];
-      if (Object.hasOwnProperty.call(ob, key)) {
-        if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
-        }
-        arr.push(key + "=" + value);
+
+  return arr.toString();
+}
+
+function objToSql(ob) {
+  var arr = [];
+
+  for (var key in ob) {
+    var value = ob[key];
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
       }
+      arr.push(key + "=" + value);
     }
-  
-    return arr.toString();
   }
+
+  return arr.toString();
+}
 
 var orm = {
-    selectAll: function (table, cb) {
-        var queryString = "SELECT * FROM " + table + ";";
-        connection.query(queryString, function (err, result) {
-            if (err) {
-                throw err;
-            }
-            cb(result);
-        });
-    },
-    // selectAll: function (id, burger_name, cb) {
-    //     var burger = "INSERT INTO " + id;
+  selectAll: function (table, cb) {
+    var qString = "SELECT * FROM " + table + ";";
+    connection.query(qString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+  // selectAll: function (id, burger_name, cb) {
+  //     var burger = "INSERT INTO " + id;
 
-    //     burger += "(";
-    //     burger += burger_name.toString();
-    //     burger += ") ";
-    //     burger += "VALUES (";
-    //     burger += ") ";
-    //     console.log(burger)
+  //     burger += "(";
+  //     burger += burger_name.toString();
+  //     burger += ") ";
+  //     burger += "VALUES (";
+  //     burger += ") ";
+  //     console.log(burger)
 
-    //     connection.query(burger, function (err, result) {
-    //         if (err) {
-    //             throw err;
-    //         }
+  //     connection.query(burger, function (err, result) {
+  //         if (err) {
+  //             throw err;
+  //         }
 
-    //         cb(result);
+  //         cb(result);
 
-    //     })
-    // },
+  //     })
+  // },
 
-    insertOne: function (table, cols, vals, cb) {
-        var qString = "INSERT INTO " + table;
-        qString += " (";
-        qString += cols.toString();
-        qString += ") ";
-        qString += "VALUES (";
-        qString += printQuestionMarks(vals.length);
-        qString += ") ";
+  insertOne: function (table, cols, vals, cb) {
+    var qString = "INSERT INTO " + table;
+    qString += " (";
+    qString += cols.toString();
+    qString += ") ";
+    qString += "VALUES (";
+    qString += printQuestionMarks(vals.length);
+    qString += ") ";
 
-        console.log(qString);
-        connection.query(qString, vals, function (err result) {
-            if(err) throw err;
-        })
-        cb(result);
+    console.log(qString);
+    connection.query(qString, vals, function (err, result) {
+      if (err) throw err;
+    })
+    cb(result);
 
+  },
 
+  updateOne: function (table, objColVals, condition, cb) {
+    var qString = "UPDATE " + table;
+    qString += " SET ";
+    qString += objToSql(objColVals);
+    qString += " WHERE ";
+    qString += condition;
 
-    },
-
-    updateOne: function (table, objColVals condition, cb) {
-        var qString = "UPDATE " + table;
-        qString += " SET ";
-        qString += objToSql(objColVals);
-        qString += " WHERE ";
-        qString += condition;
-
-        connection.query(qString, function (err, result) {
-            if(err) throw err;
-        })
-        cb(result);
-    }
+    connection.query(qString, function (err, result) {
+      if (err) throw err;
+    })
+    cb(result);
+  }
 
 
 };
