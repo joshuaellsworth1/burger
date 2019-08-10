@@ -1,4 +1,11 @@
 {
+  "development": {
+    "username": "hsaw0r9nhc49fw8s",
+    "password": "xprxkcdqqw2q7fpu",
+    "database": "xg1fr1h6w8l6rjdf",
+    "host": "xg1fr1h6w8l6rjdf",
+    "dialect": "mysql"
+  },
   "name": "burger",
   "version": "1.0.0",
   "description": "",
