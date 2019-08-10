@@ -20,7 +20,7 @@
     "host": "c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
-  "name": "burger",
+  "name": "mysql-sequelize-heroku",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
