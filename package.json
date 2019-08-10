@@ -3,7 +3,21 @@
     "username": "hsaw0r9nhc49fw8s",
     "password": "xprxkcdqqw2q7fpu",
     "database": "xg1fr1h6w8l6rjdf",
-    "host": "xg1fr1h6w8l6rjdf",
+    "host": "c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "hsaw0r9nhc49fw8s",
+    "password": "xprxkcdqqw2q7fpu",
+    "database": "xg1fr1h6w8l6rjdf",
+    "host": "c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "hsaw0r9nhc49fw8s",
+    "password": "xprxkcdqqw2q7fpu",
+    "database": "xg1fr1h6w8l6rjdf",
+    "host": "c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "name": "burger",
